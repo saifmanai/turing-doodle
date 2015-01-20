@@ -422,17 +422,17 @@ turing.isImageReady_ = function(img) {
  * @private
  */
 turing.startDemo_ = function() {
-  turing.logo_.attachTo(turing.logoContainer_);
+  //turing.logo_.attachTo(turing.logoContainer_);
   turing.tape_.attachTo(turing.logoContainer_);
   turing.program_.attachTo(turing.logoContainer_);
-  turing.overlay_.attachTo(turing.logoContainer_, turing.startGame_);
-  turing.controls_.attachTo(turing.logoContainer_);
-  turing.target_.attachTo(turing.logoContainer_);
+  //turing.overlay_.attachTo(turing.logoContainer_, turing.startGame_);
+  //turing.controls_.attachTo(turing.logoContainer_);
+  //turing.target_.attachTo(turing.logoContainer_);
   // Remove the base overlay image which we show while our sprite preloads.
   turing.logoContainer_.style.background = '';
   turing.startSleepTimer_();
   turing.program_.setInteractive(false);
-  turing.program_.change(turing.PROGRAMS[0].ops.correct, true  /* Hidden. */);
+  turing.program_.change(turing.BONUS_PROGRAM);
   turing.simulator_.run(turing.program_, turing.tape_,
       turing.SpeedSetting.FAST);
 };
@@ -895,22 +895,23 @@ turing.init = function() {
   turing.anim.reset();
   turing.anim.start();
   // In case we were previously in bonus mode.
-  turing.switchProgramsToNormalMode();
+  turing.switchProgramsToBonusMode();
   turing.setOpHighlightColor('y');
   turing.program_ = new turing.Program();
   turing.gameOver_ = false;
   turing.numFailures_ = 0;
-  turing.overlay_.create(turing.logoContainer_);
+  //turing.overlay_.create(turing.logoContainer_);
   // If the user has not solved the 'G' program, light the entire logo
   // initially, else light as many letters as they have solved.
   var curProgram = turing.state_.getCurProgram();
   var letterIndex = turing.PROGRAMS[curProgram].logoLetterIndex;
-  turing.logo_.create(letterIndex == 0 ? 6 : letterIndex);
+  //turing.logo_.create(letterIndex == 0 ? 6 : letterIndex);
   turing.tape_ = new turing.Tape();
   turing.tape_.create();
+  turing.tape_.slideUp();
   turing.program_.create();
-  turing.controls_.create();
-  turing.target_.create();
+  //turing.controls_.create();
+  //turing.target_.create();
 
   // Start the demo when we have the image for the main sprite.
   // Set up the handlers after we've initialized everything above as
